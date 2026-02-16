@@ -1,19 +1,31 @@
 IoT Water Leak Detection System
-Project Overview
+Overview
 
-This project implements a machine learning-based IoT application for detecting water leakage events using sensor and location data. The system compares a logistic regression baseline with a deep learning LSTM model to evaluate the impact of temporal modeling.
+This project implements a machine learning–based IoT solution for detecting water leakage events using sensor and infrastructure data. The objective is to minimize missed leaks in a safety-critical monitoring environment.
 
-Methods Used
+IoT Context
 
-Logistic Regression (baseline classification)
+The system simulates a smart water infrastructure pipeline where pressure, flow rate, vibration, RPM, and operational metrics are continuously monitored. Machine learning models analyze this data to identify potential leak events and trigger alerts.
 
-LSTM (time-series modeling with rolling windows)
+Models Implemented
 
-Class imbalance handling (balanced weights)
+Logistic Regression (baseline classification model)
 
-Time-aware train/test splitting
+LSTM (time-series deep learning model using rolling windows)
 
-Feature scaling without data leakage
+Class imbalance mitigation using balanced class weights
+
+Methodological Considerations
+
+Train/test split with stratification (logistic regression)
+
+Time-aware split for sequence modeling (LSTM)
+
+Feature scaling applied only on training data to prevent data leakage
+
+Rolling window size of 60 time steps for temporal modeling
+
+Recall used as primary evaluation metric due to safety-critical requirements
 
 Key Findings
 
@@ -21,18 +33,10 @@ Logistic Regression achieved high recall (~0.91) for leak detection.
 
 Unweighted LSTM collapsed to majority-class predictions.
 
-Weighted LSTM improved recall (~0.27) but introduced many false positives.
+Weighted LSTM improved recall (~0.27) but introduced substantial false positives.
 
 Simpler linear models outperformed deep learning for this dataset.
 
 Technologies
 
-Python
-
-scikit-learn
-
-TensorFlow / Keras
-
-NumPy / Pandas
-
-Matplotlib / Seaborn
+Python, scikit-learn, TensorFlow/Keras, NumPy, Pandas, Matplotlib, Seaborn
